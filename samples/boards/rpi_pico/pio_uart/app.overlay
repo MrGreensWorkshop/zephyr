@@ -1,0 +1,41 @@
+#include <zephyr/dt-bindings/pinctrl/rpi-pico-rp2040-pinctrl.h>
+
+/ {
+	chosen {
+		zephyr,console = &pio_uart0;
+		zephyr,shell-uart = &pio_uart0;
+	};
+};
+
+&uart0 {
+	status = "disabled";
+};
+
+&pinctrl {
+	pio_uart0_default: pio_uart0_default {
+		group1 {
+			pinmux = <PIO0_P0>;
+			pinmux-names = "tx";
+		};
+		group2 {
+			pinmux = <PIO0_P1>;
+			pinmux-names = "rx";
+			input-enable;
+			bias-pull-up;
+		};
+	};
+};
+
+&pio0 {
+	status = "okay";
+	pinctrl-0 = <&pio_uart0_default>;
+	pinctrl-names = "default";
+
+	pio_uart0: uart {
+		compatible = "raspberrypi,pico-uart-pio";
+		label = "PIO_UART_0";
+		status = "okay";
+		current-speed = <115200>;
+	};
+};
+ 

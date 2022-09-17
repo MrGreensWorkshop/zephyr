@@ -1,0 +1,7 @@
+sample:
+  description: RaspberryPi Pico PIO based UART sample
+  name: pio_uart
+tests:
+  sample.board.rpi_pico.pio_uart:
+    platform_allow: rpi_pico
+    tags: display

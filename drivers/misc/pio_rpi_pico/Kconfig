@@ -1,0 +1,11 @@
+# Copyright (c) 2022 TOKITA Hiroshi <tokita.hiroshi@fujitsu.com>
+# SPDX-License-Identifier: Apache-2.0
+
+# Workaround for not being able to have commas in macro arguments
+
+DT_COMPAT_RASPBERRYPI_PICO_PIO := raspberrypi,pico-pio
+
+config PIO_RPI_PICO
+	bool "RaspberryPi Pico PIO"
+	#default y
+        default $(dt_compat_enabled,$(DT_COMPAT_RASPBERRYPI_PICO_PIO))

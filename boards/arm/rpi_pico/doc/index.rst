@@ -53,10 +53,10 @@ hardware features:
      - :dtcompatible:`arm,v6m-nvic`
    * - UART
      - :kconfig:option:`CONFIG_SERIAL`
-     - :dtcompatible:`rpi,pico-uart`
+     - :dtcompatible:`raspberrypi,pico-uart`
    * - GPIO
      - :kconfig:option:`CONFIG_GPIO`
-     - :dtcompatible:`rpi,pico-gpio`
+     - :dtcompatible:`raspberrypi,pico-gpio`
    * - ADC
      - :kconfig:option:`CONFIG_ADC`
      - :dtcompatible:`raspberrypi,pico-adc`
@@ -78,6 +78,9 @@ hardware features:
    * - PWM
      - :kconfig:option:`CONFIG_PWM`
      - :dtcompatible:`raspberrypi,pico-pwm`
+   * - UART (PIO)
+     - :kconfig:option:`CONFIG_SERIAL`
+     - :dtcompatible:`raspberrypi,pico-uart-pio`
 
 Programming and Debugging
 *************************
@@ -233,3 +236,14 @@ You can then start debugging the board.
 
 .. _Getting Started with Raspberry Pi Pico:
   https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf
+
+Programmable I/O (PIO)
+**********************
+The RP2040 SoC comes with two PIO peripherals. These are two simple
+co-processors that are designed for I/O operations. The PIOs run
+a custom instruction set, generated from a custom assembly language.
+PIO programs are assembled using `pioasm`, a tool provided by Raspberry Pi.
+
+Zephyr does not (currently) assemble PIO programs. Rather, they should be
+manually assembled and embedded in source code. An example of how this is done
+can be found at `drivers/serial/uart_rpi_pico_pio.c`.
